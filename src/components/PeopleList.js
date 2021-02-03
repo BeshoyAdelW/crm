@@ -4,13 +4,14 @@ import { connect } from "react-redux";
 import PeopleItem from "./PeopleItem";
 
 function PeopleList({ people }) {
-  console.log("list is ", people);
   return (
     <View style={styles.container}>
       <FlatList
         data={people}
         renderItem={({ item }) => <PeopleItem people={item} />}
-        key={(item) => item.index}
+        keyExtractor={(item) => {
+          return item.id.toString();
+        }}
       />
     </View>
   );

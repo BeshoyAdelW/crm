@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import * as actions from "../actions";
 
 function PeopleItem({ people }) {
-  console.log("item is", people);
   return (
     <View style={styles.card}>
       <Text>
@@ -17,7 +16,6 @@ function PeopleItem({ people }) {
 
 const styles = StyleSheet.create({
   card: {
-    width: "80%",
     margin: 4,
     borderWidth: 1,
     padding: 12,
