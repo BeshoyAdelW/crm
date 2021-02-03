@@ -1,8 +1,10 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, SafeAreaView } from "react-native";
+import Constants from "expo-constants";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
+import PeopleList from "./src/components/PeopleList";
 import reducers from "./src/reducers/PeopleReducer";
 
 const store = createStore(
@@ -13,16 +15,17 @@ const store = createStore(
 export default function App() {
   return (
     <Provider store={store}>
-      <View style={styles.container}>
-        <Text>Welcome to our CRM!</Text>
+      <SafeAreaView style={styles.container}>
+        <PeopleList />
         <StatusBar style="auto" />
-      </View>
+      </SafeAreaView>
     </Provider>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: Constants.statusBarHeight,
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
