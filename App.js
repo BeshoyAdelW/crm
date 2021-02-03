@@ -1,11 +1,10 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, SafeAreaView } from "react-native";
 import Constants from "expo-constants";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-import PeopleList from "./src/components/PeopleList";
 import reducers from "./src/reducers/PeopleReducer";
+import TabNavigator from "./src/navigation/TabNavigator";
 
 const store = createStore(
   reducers,
@@ -15,20 +14,7 @@ const store = createStore(
 export default function App() {
   return (
     <Provider store={store}>
-      <SafeAreaView style={styles.container}>
-        <PeopleList />
-        <StatusBar style="auto" />
-      </SafeAreaView>
+      <TabNavigator />
     </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: Constants.statusBarHeight,
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

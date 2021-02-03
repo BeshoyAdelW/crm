@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import * as actions from "../actions";
 import { getTheme } from "react-native-material-kit";
 import { EvilIcons } from "@expo/vector-icons";
+import colors from "../config/colors";
 
 function PeopleItem({ people }) {
   const theme = getTheme();
@@ -37,15 +38,15 @@ const styles = StyleSheet.create({
     height: 100,
   },
   action: {
-    backgroundColor: "black",
-    color: "white",
+    backgroundColor: colors.black,
+    color: colors.white,
   },
   icon: {
     position: "absolute",
     top: 15,
     left: 0,
     color: "white",
-    backgroundColor: "rgba(255,255,255,0)",
+    backgroundColor: "transparent",
   },
 });
 
