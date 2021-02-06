@@ -10,7 +10,7 @@ import { loadInitialContacts } from "../actions";
 function PeopleList({ people, detailView, loadInitialContacts }) {
   useEffect(() => {
     loadInitialContacts();
-  }, []);
+  }, [people]);
 
   const renderInitialView = () => {
     if (detailView == true) {
