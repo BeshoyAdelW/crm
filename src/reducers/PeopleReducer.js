@@ -20,6 +20,13 @@ export default (state = initialState, action) => {
         detailView: false,
         personSelected: null,
       };
+    case "NEW_CONTACT":
+      return initialState;
+    case "ADD_PERSON":
+      return {
+        ...state,
+        ...action.newPerson,
+      };
     default:
       return state;
   }

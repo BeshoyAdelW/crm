@@ -12,7 +12,7 @@ import * as actions from "../actions";
 import { useState } from "react";
 import routes from "../navigation/routes";
 
-function AddPerson({ navigation }) {
+function AddPerson({ navigation, createNewContact }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
@@ -22,7 +22,7 @@ function AddPerson({ navigation }) {
   const [notes, setNotes] = useState("");
 
   const onAddPress = () => {
-    console.log({
+    createNewContact({
       firstName,
       lastName,
       phone,
