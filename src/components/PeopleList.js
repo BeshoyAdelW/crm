@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Constants from "expo-constants";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import { connect } from "react-redux";
 import colors from "../config/colors";
 import PeopleDetail from "./PeopleDetail";
 import PeopleItem from "./PeopleItem";
+import { loadInitialContacts } from "../actions";
 
-function PeopleList({ people, detailView }) {
+function PeopleList({ people, detailView, loadInitialContacts }) {
+  useEffect(() => {
+    loadInitialContacts();
+  }, []);
+
   const renderInitialView = () => {
     if (detailView == true) {
       return <PeopleDetail />;
@@ -16,7 +21,7 @@ function PeopleList({ people, detailView }) {
           data={people}
           renderItem={({ item }) => <PeopleItem people={item} />}
           keyExtractor={(item) => {
-            return item.id.toString();
+            return item._id;
           }}
         />
       );
@@ -40,4 +45,4 @@ const mapStateToProps = (state) => {
   return { people: state.people, detailView: state.detailView };
 };
 
-export default connect(mapStateToProps)(PeopleList);
+export default connect(mapStateToProps, { loadInitialContacts })(PeopleList);

@@ -42,3 +42,20 @@ export const createNewContact = ({
       .catch((e) => console.log(e));
   };
 };
+
+export const loadInitialContacts = () => {
+  return (dispatch) => {
+    fetch("http://192.168.1.6:3000/contact", {
+      method: "GET",
+      headers: {
+        Accept: "application/Json",
+        "content-Type": "application/Json",
+      },
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => dispatch({ type: "INITIAL_FETCH", payload: data }))
+      .catch((e) => console.log(e));
+  };
+};
