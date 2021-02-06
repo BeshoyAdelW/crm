@@ -17,7 +17,7 @@ function PeopleItem({ people, selectPerson }) {
   return (
     <TouchableWithoutFeedback
       onPress={() => {
-        selectPerson(people.id);
+        selectPerson(people);
       }}
     >
       <View style={[theme.cardStyle, styles.card]}>

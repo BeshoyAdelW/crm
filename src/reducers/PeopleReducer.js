@@ -12,9 +12,9 @@ export default (state = initialState, action) => {
       return {
         ...state,
         detailView: true,
-        personSelected: action.payload,
+        personSelected: action.selected,
       };
-    case "NONE-SELECTED":
+    case "NONE_SELECTED":
       return {
         ...state,
         detailView: false,

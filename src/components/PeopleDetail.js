@@ -14,11 +14,11 @@ import { EvilIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as actions from "../actions";
 
-function PeopleDetail({ people }) {
+function PeopleDetail({ person, noneSelected }) {
   const theme = getTheme();
   return (
     <View style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={true}>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <Image
           source={require("../../assets/background.jpg")}
           style={[theme.cardImageStyle, styles.image]}
@@ -28,29 +28,32 @@ function PeopleDetail({ people }) {
           name="close"
           size={30}
           style={styles.closeIcon}
-          onPress={() => {}}
+          onPress={() => {
+            console.log("pressed");
+            noneSelected();
+          }}
         />
         <Text style={[theme.cardTitleStyle, styles.title1]}>
-          {people.firstName} {people.lastName}
+          {person.firstName} {person.lastName}
         </Text>
         <Text style={[theme.cardTitleStyle, styles.title2]}>
-          from {people.company}
+          from {person.company}
         </Text>
         <View style={styles.textArea}>
           <MaterialIcons name="phone" size={40} style={styles.textIcon} />
-          <Text style={theme.cardContentStyle}>{people.phone}</Text>
+          <Text style={theme.cardContentStyle}>{person.phone}</Text>
         </View>
         <View style={styles.textArea}>
           <MaterialIcons name="email" size={40} style={styles.textIcon} />
-          <Text style={theme.cardContentStyle}>{people.email}</Text>
+          <Text style={theme.cardContentStyle}>{person.email}</Text>
         </View>
         <View style={styles.textArea}>
           <MaterialIcons name="assignment" size={40} style={styles.textIcon} />
-          <Text style={theme.cardContentStyle}>{people.project}</Text>
+          <Text style={theme.cardContentStyle}>{person.project}</Text>
         </View>
         <View style={styles.textArea}>
           <MaterialIcons name="mode-edit" size={40} style={styles.textIcon} />
-          <Text style={theme.cardContentStyle}>{people.notes}</Text>
+          <Text style={theme.cardContentStyle}>{person.notes}</Text>
         </View>
         <TouchableOpacity>
           <Image
@@ -138,7 +141,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-  return { people: state.people, personSelected: state.personSelected };
+  return { person: state.personSelected };
 };
 
 export default connect(mapStateToProps, actions)(PeopleDetail);
