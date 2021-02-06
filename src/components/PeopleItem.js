@@ -12,12 +12,12 @@ import { getTheme } from "react-native-material-kit";
 import { EvilIcons } from "@expo/vector-icons";
 import colors from "../config/colors";
 
-function PeopleItem({ people, selectPerson }) {
+function PeopleItem({ people, selectContact }) {
   const theme = getTheme();
   return (
     <TouchableWithoutFeedback
       onPress={() => {
-        selectPerson(people);
+        selectContact(people);
       }}
     >
       <View style={[theme.cardStyle, styles.card]}>

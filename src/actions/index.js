@@ -1,6 +1,6 @@
-export const selectPerson = (people) => {
+export const selectContact = (people) => {
   return {
-    type: "SELECTED_PERSON",
+    type: "SELECTED_CONTACT",
     selected: people,
   };
 };
@@ -56,6 +56,22 @@ export const loadInitialContacts = () => {
         return response.json();
       })
       .then((data) => dispatch({ type: "INITIAL_FETCH", payload: data }))
+      .catch((e) => console.log(e));
+  };
+};
+
+export const deleteContact = (id) => {
+  return (dispatch) => {
+    fetch(`http://192.168.1.6:3000/contact/${id}`, {
+      method: "DELETE",
+      body: JSON.stringify(),
+      headers: {
+        Accept: "application/Json",
+        "content-Type": "application/Json",
+      },
+    })
+      .then((response) => console.log(response))
+      .then(() => dispatch({ type: "DELETE_CONTACT" }))
       .catch((e) => console.log(e));
   };
 };

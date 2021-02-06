@@ -13,8 +13,9 @@ import { getTheme } from "react-native-material-kit";
 import { EvilIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as actions from "../actions";
+import routes from "../navigation/routes";
 
-function PeopleDetail({ person, noneSelected }) {
+function PeopleDetail({ person, noneSelected, deleteContact }) {
   const theme = getTheme();
   return (
     <View style={styles.container}>
@@ -29,7 +30,6 @@ function PeopleDetail({ person, noneSelected }) {
           size={30}
           style={styles.closeIcon}
           onPress={() => {
-            console.log("pressed");
             noneSelected();
           }}
         />
@@ -54,6 +54,27 @@ function PeopleDetail({ person, noneSelected }) {
         <View style={styles.textArea}>
           <MaterialIcons name="mode-edit" size={40} style={styles.textIcon} />
           <Text style={theme.cardContentStyle}>{person.notes}</Text>
+        </View>
+        <View style={styles.editArea}>
+          <TouchableOpacity
+            style={styles.sections}
+            onPress={() => {
+              noneSelected();
+            }}
+          >
+            <MaterialIcons name="autorenew" size={40} style={styles.editIcon} />
+            <Text style={theme.cardContentStyle}>EDIT</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.sections}
+            onPress={() => {
+              deleteContact(person._id);
+              noneSelected();
+            }}
+          >
+            <MaterialIcons name="delete" size={40} style={styles.editIcon} />
+            <Text style={theme.cardContentStyle}>DELETE</Text>
+          </TouchableOpacity>
         </View>
         <TouchableOpacity>
           <Image

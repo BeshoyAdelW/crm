@@ -16,7 +16,7 @@ export default (state = initialState, action) => {
         ...state,
         people: action.payload,
       };
-    case "SELECTED_PERSON":
+    case "SELECTED_CONTACT":
       return {
         ...state,
         detailView: true,
@@ -38,7 +38,12 @@ export default (state = initialState, action) => {
         project: "",
         notes: "",
       };
-    case "ADD_PERSON":
+    case "ADD_CONTACT":
+      return {
+        ...state,
+        ...action.newPerson,
+      };
+    case "DELETE_CONTACT":
       return {
         ...state,
         ...action.newPerson,
