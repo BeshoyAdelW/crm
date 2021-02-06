@@ -1,27 +1,39 @@
 import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  Image,
+} from "react-native";
 import { connect } from "react-redux";
 import * as actions from "../actions";
 import { getTheme } from "react-native-material-kit";
 import { EvilIcons } from "@expo/vector-icons";
 import colors from "../config/colors";
 
-function PeopleItem({ people }) {
+function PeopleItem({ people, selectPerson }) {
   const theme = getTheme();
   return (
-    <View style={[theme.cardStyle, styles.card]}>
-      <Image
-        source={require("../../assets/background.jpg")}
-        style={[theme.cardImageStyle, styles.image]}
-      />
-      <EvilIcons name="user" size={100} style={styles.icon} />
-      <Text style={[theme.cardTitleStyle, styles.title]}>
-        {people.firstName} {people.lastName}
-      </Text>
-      <Text style={[theme.cardActionStyle, styles.action]}>
-        {people.company}
-      </Text>
-    </View>
+    <TouchableWithoutFeedback
+      onPress={() => {
+        selectPerson(people.id);
+      }}
+    >
+      <View style={[theme.cardStyle, styles.card]}>
+        <Image
+          source={require("../../assets/background.jpg")}
+          style={[theme.cardImageStyle, styles.image]}
+        />
+        <EvilIcons name="user" size={100} style={styles.icon} />
+        <Text style={[theme.cardTitleStyle, styles.title]}>
+          {people.firstName} {people.lastName}
+        </Text>
+        <Text style={[theme.cardActionStyle, styles.action]}>
+          {people.company}
+        </Text>
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 
